@@ -1,0 +1,26 @@
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+          <% if @order.line_items.blank? %>
+            <div class="card p-3 text-center">
+              장바구니가 비었습니다
+            </div>
+          <% end %>
+          <% @order.line_items.each do |line_item| %>
+          <div class="card p-3 my-4">
+            <div class="col-md-4">
+              <a href="<%= item_path(line_item.item) %>"><%= line_item.item.title %></a>
+              <%= image_tag line_item.item.image.url, class: "img-thumbnail img-fluid" %>
+              <%= line_item.amount %> 개
+              <%= number_with_delimiter line_item.price %>
+            </div>
+          </div>
+          <% end %>
+          <p>
+            합계 : <%= number_with_delimiter @order.total %>
+          </p>
+        <%= link_to "주문하기", edit_order_path(@order), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

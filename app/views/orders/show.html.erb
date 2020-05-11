@@ -1,0 +1,20 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col">
+        <% @order.line_items.each do |line_item| %>
+          <div class="card p-3 my-4">
+            <div class="col-md-4">
+              <h3><%= line_item.item.title %></h3>
+              <%= image_tag line_item.item.image.url, class: "img-thumbnail img-fluid" %>
+              <%= line_item.item.description %><br>
+              <%= line_item.item.price %>
+            </div>
+          </div>
+        <% end %>
+
+      <div class="card p-3 my-4">
+        총합계 : <%= number_with_delimiter @order.total %>
+      </div>
+    </div>
+  </div>
+</div>
